@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 fastapi = {extras = ["standard"], version = "*"}
 scikit-learn = "*"
-pickle5 = "*"
 numpy = "*"
 
 [dev-packages]

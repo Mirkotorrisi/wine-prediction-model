@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 import numpy as np
-import pickle5 as pickle
+import pickle
 
 
 

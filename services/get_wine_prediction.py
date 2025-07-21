@@ -5,7 +5,7 @@ from models.prediction_query import PredictionQuery
 from models.prediction_output import PredictionOutput
 
 import numpy as np
-import pickle5 as pickle
+import pickle
 
 wine_data = load_wine()
 
