@@ -7,6 +7,11 @@ The app is exposed using `FastAPI`, with a single GET route available in the bui
 
 - GET /predict_wine
 
+## To train the model
+
+I removed scikitlearn from requirements to get a lightweight build
+1. pipenv install scikit-learn
+
 
 ## How to work with Python virtual environments and launch FastAPI server 
 
