@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 import numpy as np
-import pickle
+import joblib
 
 
 
@@ -23,4 +23,4 @@ model.fit(X_train, y_train)
 
 # Save the model to a file
 with open("assets/wine_model.pkl", "wb") as model_file:
-    pickle.dump(model, model_file)
+    joblib.dump(model, model_file)

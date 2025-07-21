@@ -5,7 +5,8 @@ from models.prediction_query import PredictionQuery
 from models.prediction_output import PredictionOutput
 
 import numpy as np
-import pickle
+import joblib
+
 
 # wine_data = load_wine()
 
@@ -13,7 +14,7 @@ import pickle
 target_names = ['class_0', 'class_1', 'class_2']
 
 with open("assets/wine_model.pkl", "rb") as model_file:
-    model = pickle.load(model_file)
+    model = joblib.load(model_file)
 
 def get_single_prediction(query: Annotated[PredictionQuery, Query()]) -> PredictionOutput:
     '''Get a single wine prediction based on the provided query parameters.'''
