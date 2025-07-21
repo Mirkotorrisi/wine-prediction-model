@@ -5,7 +5,8 @@ from models.prediction_query import PredictionQuery
 from models.prediction_output import PredictionOutput
 
 import numpy as np
-import joblib
+import onnxruntime as rt
+
 
 
 # wine_data = load_wine()
@@ -13,8 +14,7 @@ import joblib
 # target_names = wine_data.target_names
 target_names = ['class_0', 'class_1', 'class_2']
 
-with open("assets/wine_model.pkl", "rb") as model_file:
-    model = joblib.load(model_file)
+onnx_session = rt.InferenceSession("assets/model.onnx")
 
 def get_single_prediction(query: Annotated[PredictionQuery, Query()]) -> PredictionOutput:
     '''Get a single wine prediction based on the provided query parameters.'''
@@ -36,8 +36,8 @@ def get_single_prediction(query: Annotated[PredictionQuery, Query()]) -> Predict
 
     record_reshape = current_record.reshape(1,-1)
 
-    predicted_proba = model.predict_proba(record_reshape)[0]
-    predicted_class = model.predict(record_reshape)[0]
+    predicted_proba = onnx_session.run(None, {onnx_session.get_inputs()[0].name: record_reshape})[1][0]
+    predicted_class = onnx_session.run(None, {onnx_session.get_inputs()[0].name: record_reshape})[0][0]
 
     predicted_proba_dict = {target_names[i]: predicted_proba[i] for i in range(len(predicted_proba))}
 
