@@ -1,4 +1,4 @@
-from sklearn.datasets import load_wine
+# from sklearn.datasets import load_wine
 from typing_extensions import Annotated
 from fastapi import Query
 from models.prediction_query import PredictionQuery
@@ -7,11 +7,10 @@ from models.prediction_output import PredictionOutput
 import numpy as np
 import pickle
 
-wine_data = load_wine()
+# wine_data = load_wine()
 
-target_names = wine_data.target_names
-features = wine_data.data
-target = wine_data.target
+# target_names = wine_data.target_names
+target_names = ['class_0', 'class_1', 'class_2']
 
 with open("assets/wine_model.pkl", "rb") as model_file:
     model = pickle.load(model_file)
